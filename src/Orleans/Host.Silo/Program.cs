@@ -16,7 +16,6 @@ namespace Host.Silo
                                     {
                                         siloBuilder.UseLocalhostClustering()
                                                    .Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback);
-
                                     })
                                     .ConfigureServices(services =>
                                     {

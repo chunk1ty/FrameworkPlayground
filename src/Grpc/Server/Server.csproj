@@ -5,11 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Orleans.Client" Version="3.3.0" />
+        <Protobuf Include="Protos\greet.proto" GrpcServices="Server"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Grains.Contracts\Grains.Contracts.csproj" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.27.0"/>
     </ItemGroup>
 
 </Project>

@@ -1,0 +1,5 @@
+﻿1) Start server (Host.Silo)
+2) Start Client (Console or Web). 
+    Input format: 17, 100
+    17 - grain id
+    100 - temperature 
