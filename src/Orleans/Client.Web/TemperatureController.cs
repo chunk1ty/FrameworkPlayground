@@ -6,7 +6,6 @@ using Orleans;
 namespace Client.Web
 {
     [ApiController]
-    [Route("[controller]")]
     public class TemperatureController : ControllerBase
     {
         private readonly IClusterClient _client;

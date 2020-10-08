@@ -3,6 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E386A151-B0B6-4894-AE24-88C39224BB34}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orleans", "Orleans", "{94804FDE-ACD6-4CED-8998-6D5C9E2F3C6A}"
+ProjectSection(SolutionItems) = preProject
+	src\Orleans\README = src\Orleans\README
+EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grains.Contracts", "src\Orleans\Grains.Contracts\Grains.Contracts.csproj", "{4B3E1DDD-371E-43E0-BBB5-3E08C4EF191B}"
 EndProject
