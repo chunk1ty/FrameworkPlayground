@@ -1,6 +1,8 @@
-﻿namespace Dispatcher
+﻿using System;
+
+namespace Dispatcher
 {
-    public class Message
+    public class Message : EventArgs
     {
         public Message(int id, string data)
         {
