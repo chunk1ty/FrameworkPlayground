@@ -21,13 +21,17 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.Web", "src\Orleans\Client.Web\Client.Web.csproj", "{4AD683C5-3A6F-48BE-8B6C-EB6641EDE686}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Grpc", "Grpc", "{7931597C-AB2E-4796-8906-9DAD02964763}"
-ProjectSection(SolutionItems) = preProject
-	src\Grpc\README.md = src\Grpc\README.md
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		src\Grpc\README.md = src\Grpc\README.md
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "src\Grpc\Client\Client.csproj", "{71DFC3B5-1E42-4C5E-AB56-43EDDAB4DE94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "src\Grpc\Client\Client.csproj", "{71DFC3B5-1E42-4C5E-AB56-43EDDAB4DE94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "src\Grpc\Server\Server.csproj", "{4955AA69-68F2-4982-9E0D-641804B28A38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "src\Grpc\Server\Server.csproj", "{4955AA69-68F2-4982-9E0D-641804B28A38}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "My", "My", "{E3899A2E-C22A-42A6-B1EB-CBFAF32F0455}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoCContainer", "src\My\IoCContainer\IoCContainer.csproj", "{D3780D66-2394-4200-BEA2-DC65CCDEF844}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,10 @@ Global
 		{4955AA69-68F2-4982-9E0D-641804B28A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4955AA69-68F2-4982-9E0D-641804B28A38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4955AA69-68F2-4982-9E0D-641804B28A38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3780D66-2394-4200-BEA2-DC65CCDEF844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3780D66-2394-4200-BEA2-DC65CCDEF844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3780D66-2394-4200-BEA2-DC65CCDEF844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3780D66-2394-4200-BEA2-DC65CCDEF844}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +85,8 @@ Global
 		{7931597C-AB2E-4796-8906-9DAD02964763} = {E386A151-B0B6-4894-AE24-88C39224BB34}
 		{71DFC3B5-1E42-4C5E-AB56-43EDDAB4DE94} = {7931597C-AB2E-4796-8906-9DAD02964763}
 		{4955AA69-68F2-4982-9E0D-641804B28A38} = {7931597C-AB2E-4796-8906-9DAD02964763}
+		{E3899A2E-C22A-42A6-B1EB-CBFAF32F0455} = {E386A151-B0B6-4894-AE24-88C39224BB34}
+		{D3780D66-2394-4200-BEA2-DC65CCDEF844} = {E3899A2E-C22A-42A6-B1EB-CBFAF32F0455}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04C17BF5-0727-4591-B4AC-31C5F8B0B1B5}

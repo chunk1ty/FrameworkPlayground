@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Grains.Contracts;
 using Microsoft.Extensions.Logging;
@@ -52,7 +53,7 @@ namespace Grains
 
         public Task SetTemperature(double value)
         {
-            _logger.LogInformation($"[{this.GetGrainIdentity().PrimaryKeyLong}] DeviceGrain with value '{value}'");
+            _logger.LogInformation($"[{this.GetGrainIdentity().PrimaryKeyLong}] DeviceGrain with value '{value}' {Thread.CurrentThread.ManagedThreadId}");
 
             if (_lastValue < 100 && value >= 100)
             {
