@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "My", "My", "{E3899A2E-C22A-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoCContainer", "src\My\IoCContainer\IoCContainer.csproj", "{D3780D66-2394-4200-BEA2-DC65CCDEF844}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dispatcher", "src\My\Dispatcher\Dispatcher.csproj", "{2FF9DEB5-5233-4386-8912-2A687A6E88BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{D3780D66-2394-4200-BEA2-DC65CCDEF844}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3780D66-2394-4200-BEA2-DC65CCDEF844}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3780D66-2394-4200-BEA2-DC65CCDEF844}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FF9DEB5-5233-4386-8912-2A687A6E88BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FF9DEB5-5233-4386-8912-2A687A6E88BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FF9DEB5-5233-4386-8912-2A687A6E88BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FF9DEB5-5233-4386-8912-2A687A6E88BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{4955AA69-68F2-4982-9E0D-641804B28A38} = {7931597C-AB2E-4796-8906-9DAD02964763}
 		{E3899A2E-C22A-42A6-B1EB-CBFAF32F0455} = {E386A151-B0B6-4894-AE24-88C39224BB34}
 		{D3780D66-2394-4200-BEA2-DC65CCDEF844} = {E3899A2E-C22A-42A6-B1EB-CBFAF32F0455}
+		{2FF9DEB5-5233-4386-8912-2A687A6E88BB} = {E3899A2E-C22A-42A6-B1EB-CBFAF32F0455}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04C17BF5-0727-4591-B4AC-31C5F8B0B1B5}
