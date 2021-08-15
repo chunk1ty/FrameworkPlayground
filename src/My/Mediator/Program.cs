@@ -9,23 +9,31 @@ namespace Mediator
     {
         static async Task Main()
         {
-            var mappings = new Dictionary<Type, Type>
+            var requestHandlersMappings = new Dictionary<Type, Type>
             {
                 {typeof(MyRequest), typeof(MyRequestRequestHandler)},
                 {typeof(MyAgeRequest), typeof(MyAgeRequestRequestHandler)}
+            };
+
+            var notificationHandlersMappings = new Dictionary<Type, List<Type>>
+            {
+                {typeof(MyNotification), new List<Type>(2) {typeof(MyNotificationHandler1), typeof(MyNotificationHandler2) }},
             };
 
             var registrations = new Dictionary<Type, Func<object>>
             {
                 {typeof(MyRequestRequestHandler), () => new MyRequestRequestHandler()},
                 {typeof(MyAgeRequestRequestHandler), () => new MyAgeRequestRequestHandler()},
+                {typeof(MyNotificationHandler1), () => new MyNotificationHandler1()},
+                {typeof(MyNotificationHandler2), () => new MyNotificationHandler2()},
             };
 
-            IMediator mediator = new MyMediator(mappings, registrations);
-            
-            await mediator.Send(new MyRequest("Hello World!"));
+            IMediator mediator = new MyMediator(requestHandlersMappings, notificationHandlersMappings, registrations);
 
-            await mediator.Send(new MyAgeRequest(28));
+            //await mediator.Send(new MyRequest("Hello World!"));
+            //await mediator.Send(new MyAgeRequest(28));
+
+            await mediator.Publish(new MyNotification("notification"));
         }
 
         private static Func<Type, object> DiRegistrations()
@@ -71,6 +79,36 @@ namespace Mediator
             Console.WriteLine($"My age is: [{request.Age}] Handler type: [{this.GetType()}]");
 
             return Task.FromResult(42);
+        }
+    }
+
+    public class MyNotification : INotification
+    {
+        public MyNotification(string text)
+        {
+            Text = text;
+        }
+
+        public string Text { get; }
+    }
+
+    public class MyNotificationHandler1 : INotificationHandler<MyNotification>
+    {
+        public Task Handle(MyNotification notification)
+        {
+            Console.WriteLine($"[{notification.Text}] Handler type: [{this.GetType()}]");
+
+            return Task.FromResult(true);
+        }
+    }
+
+    public class MyNotificationHandler2 : INotificationHandler<MyNotification>
+    {
+        public Task Handle(MyNotification notification)
+        {
+            Console.WriteLine($"[{notification.Text}] Handler type: [{this.GetType()}]");
+
+            return Task.FromResult(true);
         }
     }
 }
