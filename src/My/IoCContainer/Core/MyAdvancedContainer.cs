@@ -2,57 +2,117 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace IoCContainer.Core
+namespace DiContainer.Core
 {
     public class MyAdvancedContainer
     {
-        readonly Dictionary<Type, Func<object>> _registrations = new Dictionary<Type, Func<object>>();
+        private readonly Dictionary<Type, ServiceDescriptor> _serviceDescriptors = new Dictionary<Type, ServiceDescriptor>();
 
-        public void Register<TInterface, TImplementation>() where TImplementation : TInterface
+        public void RegisterTransient<TService, TImplementation>()
+            where TImplementation : TService
         {
-            _registrations.Add(typeof(TInterface), () => GetInstance(typeof(TImplementation)));
+            _serviceDescriptors.Add(typeof(TService), new ServiceDescriptor(typeof(TService), typeof(TImplementation), ServiceLifetime.Transient));
         }
 
-        public void Register<TService>(Func<TService> instanceCreator)
+        public void RegisterTransient<TService>()
         {
-            _registrations.Add(typeof(TService), () => instanceCreator());
+            _serviceDescriptors.Add(typeof(TService), new ServiceDescriptor(typeof(TService), typeof(TService), ServiceLifetime.Transient));
+        }
+
+        public void RegisterTransient<TService>(TService instance)
+        {
+            _serviceDescriptors.Add(typeof(TService), new ServiceDescriptor(typeof(TService), instance, ServiceLifetime.Transient));
+        }
+
+        public void RegisterSingleton<TService, TImplementation>()
+            where TImplementation : TService
+        {
+            _serviceDescriptors.Add(typeof(TService), new ServiceDescriptor(typeof(TService), typeof(TImplementation), ServiceLifetime.Singleton));
+        }
+
+        public void RegisterSingleton<TService>()
+        {
+            _serviceDescriptors.Add(typeof(TService), new ServiceDescriptor(typeof(TService), typeof(TService), ServiceLifetime.Singleton));
         }
 
         public void RegisterSingleton<TService>(TService instance)
         {
-            _registrations.Add(typeof(TService), () => instance);
+            _serviceDescriptors.Add(typeof(TService), new ServiceDescriptor(typeof(TService), instance, ServiceLifetime.Singleton));
         }
 
-        public void RegisterSingleton<TService>(Func<TService> instanceCreator)
+        public T GetService<T>()
         {
-            var lazy = new Lazy<TService>(instanceCreator);
-            Register<TService>(() => lazy.Value);
+            return (T)GetService(typeof(T));
         }
 
-        public object GetInstance(Type serviceType)
+        private object GetService(Type serviceType)
         {
-            Func<object> creator;
-
-            if (_registrations.TryGetValue(serviceType, out creator))
-            { 
-                return creator();
-            }
-
-            if (!serviceType.IsAbstract)
+            if (!_serviceDescriptors.ContainsKey(serviceType))
             {
-                return CreateInstance(serviceType);
+                throw new InvalidOperationException($"No registration for: [{serviceType}].");
             }
 
-            throw new InvalidOperationException("No registration for " + serviceType);
+            ServiceDescriptor serviceDescriptor = _serviceDescriptors[serviceType];
+
+            if (serviceDescriptor.ImplementationType.IsAbstract || serviceDescriptor.ImplementationType.IsInterface)
+            {
+                throw new InvalidOperationException($"Cannot instantiate abstract class or interface: [{serviceDescriptor.ImplementationType}].");
+            }
+
+            if (serviceDescriptor.Implementation != null)
+            {
+                return serviceDescriptor.Implementation;
+            }
+
+            object implementationInstance = CreateNewInstance(serviceDescriptor.ImplementationType);
+
+            if (serviceDescriptor.Lifetime == ServiceLifetime.Singleton)
+            {
+                serviceDescriptor.Implementation = implementationInstance;
+            }
+
+            return implementationInstance;
         }
 
-        private object CreateInstance(Type implementationType)
+        private object CreateNewInstance(Type implementationType)
         {
-            var ctor = implementationType.GetConstructors().Single();
-            var parameterTypes = ctor.GetParameters().Select(p => p.ParameterType);
-            var dependencies = parameterTypes.Select(t => this.GetInstance(t)).ToArray();
+            var ctor = implementationType.GetConstructors().First();
+            var dependencies = ctor.GetParameters().Select(p => GetService(p.ParameterType)).ToArray();
 
             return Activator.CreateInstance(implementationType, dependencies);
         }
+    }
+
+    public enum ServiceLifetime
+    {
+        Singleton,
+        Transient,
+    }
+
+    public class ServiceDescriptor
+    {
+        public ServiceDescriptor(Type serviceType, Type implementationType, ServiceLifetime lifetime)
+        {
+            ServiceType = serviceType;
+            ImplementationType = implementationType;
+            Lifetime = lifetime;
+        }
+
+        public ServiceDescriptor(Type serviceType, object implementation, ServiceLifetime lifetime)
+        {
+            ServiceType = serviceType;
+            ImplementationType = implementation.GetType();
+            Implementation = implementation;
+            Lifetime = lifetime;
+        }
+
+        public Type ServiceType { get; }
+
+        public Type ImplementationType { get; }
+
+        // keeps register service implementation instance.
+        public object Implementation { get; set; }
+
+        public ServiceLifetime Lifetime { get; }
     }
 }

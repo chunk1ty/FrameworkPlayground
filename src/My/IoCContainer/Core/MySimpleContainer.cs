@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace IoCContainer.Core
+namespace DiContainer.Core
 {
     public class MySimpleContainer
     {

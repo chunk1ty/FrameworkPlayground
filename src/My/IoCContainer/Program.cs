@@ -1,7 +1,7 @@
-﻿using IoCContainer.Core;
-using IoCContainer.Services;
+﻿using DiContainer.Core;
+using DiContainer.Services;
 
-namespace IoCContainer
+namespace DiContainer
 {
     class Program
     {
@@ -14,10 +14,19 @@ namespace IoCContainer
             
             
             var myAdvancedContainer = new MyAdvancedContainer();
-            myAdvancedContainer.Register<IEmailSender, SmtpEmailSender>();
-            myAdvancedContainer.Register<IRepository, Repository>();
-            
-            myAdvancedContainer.GetInstance(typeof (LoginController));
+            myAdvancedContainer.RegisterTransient<IEmailSender, SmtpEmailSender>();
+            myAdvancedContainer.RegisterSingleton<IRepository, Repository>();
+            myAdvancedContainer.RegisterTransient<Repository>(new Repository());
+            myAdvancedContainer.RegisterTransient<LoginController>();
+            // myAdvancedContainer.GetInstance(typeof (LoginController));
+
+            // myAdvancedContainer.RegisterSingleton<IRepository, Repository>();
+           //  myAdvancedContainer.RegisterSingleton(new Repository());
+
+            var hash1 = myAdvancedContainer.GetService<Repository>().GetHashCode();
+            var hash2 = myAdvancedContainer.GetService<IRepository>().GetHashCode();
+
+            var loginController = myAdvancedContainer.GetService<LoginController>();
         }
     }
 }

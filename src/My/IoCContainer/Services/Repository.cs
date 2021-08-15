@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IoCContainer.Services
+namespace DiContainer.Services
 {
     public interface IRepository
     {

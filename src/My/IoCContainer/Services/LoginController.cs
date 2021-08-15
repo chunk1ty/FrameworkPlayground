@@ -1,4 +1,4 @@
-﻿namespace IoCContainer.Services
+﻿namespace DiContainer.Services
 {
     public class LoginController
     {

@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "src\Grpc\Server\S
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "My", "My", "{E3899A2E-C22A-42A6-B1EB-CBFAF32F0455}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoCContainer", "src\My\IoCContainer\IoCContainer.csproj", "{D3780D66-2394-4200-BEA2-DC65CCDEF844}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiContainer", "src\My\IoCContainer\DiContainer.csproj", "{D3780D66-2394-4200-BEA2-DC65CCDEF844}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dispatcher", "src\My\Dispatcher\Dispatcher.csproj", "{2FF9DEB5-5233-4386-8912-2A687A6E88BB}"
 EndProject
