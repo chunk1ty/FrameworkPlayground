@@ -10,7 +10,7 @@ namespace Mediator
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddMediator(this IServiceCollection services,  ServiceLifetime lifetime, params Type[] markers)
+        public static IServiceCollection AddMyMediator(this IServiceCollection services,  ServiceLifetime lifetime, params Type[] markers)
         {
             var handlerInfo = new Dictionary<Type, Type>();
 
@@ -20,9 +20,16 @@ namespace Mediator
                 var requests = GetClassesImplementingInterface(assembly, typeof(IRequest<>));
                 var handlers = GetClassesImplementingInterface(assembly, typeof(IRequestHandler<,>));
 
-                requests.ForEach(x =>
-                    handlerInfo[x] = handlers.SingleOrDefault(xx => x == xx.GetInterface("IRequestHandler`2")!.GetGenericArguments()[0])
-                );
+                //requests.ForEach(x =>
+                //    handlerInfo[x] = handlers.SingleOrDefault(xx => x == xx.GetInterface("IRequestHandler`2")!.GetGenericArguments()[0])
+                //);
+
+                foreach (Type request in requests)
+                {
+                    // h.GetInterfaces().First().GetGenericArguments().First() gets TRequest type from IRequestHandler<TRequest, TResponse> 
+                    Type requestHandler = handlers.SingleOrDefault(h => request == h.GetInterfaces().First().GetGenericArguments().First());
+                    handlerInfo.Add(request, requestHandler);
+                }
 
                 var serviceDescriptor = handlers.Select(x => new ServiceDescriptor(x, x, lifetime));
                 services.TryAdd(serviceDescriptor);
@@ -38,10 +45,13 @@ namespace Mediator
             return assembly.ExportedTypes
                 .Where(type =>
                 {
-                    var genericInterfaceTypes = type.GetInterfaces().Where(x => x.IsGenericType).ToList();
-                    var implementRequestType =
-                        genericInterfaceTypes.Any(x => x.GetGenericTypeDefinition() == typeToMatch);
-                    return !type.IsInterface && !type.IsAbstract && implementRequestType;
+                    //var genericInterfaceTypes = type.GetInterfaces().Where(x => x.IsGenericType).ToList();
+                    //var implementRequestType =
+                    //    genericInterfaceTypes.Any(x => x.GetGenericTypeDefinition() == typeToMatch);
+                    //return !type.IsInterface && !type.IsAbstract && implementRequestType;
+
+                    return type.GetInterfaces().Any(t => t.IsGenericType && 
+                                                         t.GetGenericTypeDefinition() == typeToMatch);
                 }).ToList();
         }
     }

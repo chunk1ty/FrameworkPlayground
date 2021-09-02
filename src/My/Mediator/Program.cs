@@ -38,7 +38,7 @@ namespace Mediator
             //await mediator.Publish(new MyNotification("notification"));
 
             // 2. Dynamic registration
-            var serviceProvider = new ServiceCollection().AddMediator(ServiceLifetime.Scoped, typeof(Program))
+            var serviceProvider = new ServiceCollection().AddMyMediator(ServiceLifetime.Scoped, typeof(Program))
                                                          .BuildServiceProvider();
 
             var mediator = serviceProvider.GetRequiredService<IMediator>();
