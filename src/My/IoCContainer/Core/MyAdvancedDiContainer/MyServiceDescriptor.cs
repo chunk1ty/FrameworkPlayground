@@ -2,16 +2,16 @@
 
 namespace DiContainer.Core.MyAdvancedDiContainer
 {
-    public class ServiceDescriptor
+    public class MyServiceDescriptor
     {
-        public ServiceDescriptor(Type serviceType, Type implementationType, ServiceLifetime lifetime)
+        public MyServiceDescriptor(Type serviceType, Type implementationType, MyServiceLifetime lifetime)
         {
             ServiceType = serviceType;
             ImplementationType = implementationType;
             Lifetime = lifetime;
         }
 
-        public ServiceDescriptor(Type serviceType, object implementation, ServiceLifetime lifetime)
+        public MyServiceDescriptor(Type serviceType, object implementation, MyServiceLifetime lifetime)
         {
             ServiceType = serviceType;
             ImplementationType = implementation.GetType();
@@ -26,6 +26,6 @@ namespace DiContainer.Core.MyAdvancedDiContainer
         // keeps register service implementation instance.
         public object Implementation { get; set; }
 
-        public ServiceLifetime Lifetime { get; }
+        public MyServiceLifetime Lifetime { get; }
     }
 }

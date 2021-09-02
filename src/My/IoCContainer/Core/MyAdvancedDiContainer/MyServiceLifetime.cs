@@ -1,6 +1,6 @@
 ﻿namespace DiContainer.Core.MyAdvancedDiContainer
 {
-    public enum ServiceLifetime
+    public enum MyServiceLifetime
     {
         Singleton,
         Transient,

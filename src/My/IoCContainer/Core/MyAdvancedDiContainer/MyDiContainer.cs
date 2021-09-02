@@ -6,9 +6,9 @@ namespace DiContainer.Core.MyAdvancedDiContainer
 {
     public class MyDiContainer
     {
-        private readonly Dictionary<Type, ServiceDescriptor> _serviceDescriptors;
+        private readonly Dictionary<Type, MyServiceDescriptor> _serviceDescriptors;
 
-        public MyDiContainer(Dictionary<Type, ServiceDescriptor> serviceDescriptors)
+        public MyDiContainer(Dictionary<Type, MyServiceDescriptor> serviceDescriptors)
         {
             _serviceDescriptors = serviceDescriptors;
         }
@@ -18,30 +18,30 @@ namespace DiContainer.Core.MyAdvancedDiContainer
             return (TService)GetService(typeof(TService));
         }
 
-        private object GetService(Type serviceType)
+        public object GetService(Type serviceType)
         {
             if (!_serviceDescriptors.ContainsKey(serviceType))
             {
                 throw new InvalidOperationException($"No registration for: [{serviceType}].");
             }
 
-            ServiceDescriptor serviceDescriptor = _serviceDescriptors[serviceType];
+            MyServiceDescriptor myServiceDescriptor = _serviceDescriptors[serviceType];
 
-            if (serviceDescriptor.ImplementationType.IsAbstract || serviceDescriptor.ImplementationType.IsInterface)
+            if (myServiceDescriptor.ImplementationType.IsAbstract || myServiceDescriptor.ImplementationType.IsInterface)
             {
-                throw new InvalidOperationException($"Cannot instantiate abstract class or interface: [{serviceDescriptor.ImplementationType}].");
+                throw new InvalidOperationException($"Cannot instantiate abstract class or interface: [{myServiceDescriptor.ImplementationType}].");
             }
 
-            if (serviceDescriptor.Implementation != null)
+            if (myServiceDescriptor.Implementation != null)
             {
-                return serviceDescriptor.Implementation;
+                return myServiceDescriptor.Implementation;
             }
 
-            object implementationInstance = CreateNewInstance(serviceDescriptor.ImplementationType);
+            object implementationInstance = CreateNewInstance(myServiceDescriptor.ImplementationType);
 
-            if (serviceDescriptor.Lifetime == ServiceLifetime.Singleton)
+            if (myServiceDescriptor.Lifetime == MyServiceLifetime.Singleton)
             {
-                serviceDescriptor.Implementation = implementationInstance;
+                myServiceDescriptor.Implementation = implementationInstance;
             }
 
             return implementationInstance;

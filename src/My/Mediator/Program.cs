@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using DiContainer.Core.MyAdvancedDiContainer;
 using Mediator.Core;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -37,12 +38,24 @@ namespace Mediator
 
             //await mediator.Publish(new MyNotification("notification"));
 
-            // 2. Dynamic registration
-            var serviceProvider = new ServiceCollection().AddMyMediator(ServiceLifetime.Scoped, typeof(Program))
-                                                         .BuildServiceProvider();
 
-            var mediator = serviceProvider.GetRequiredService<IMediator>();
 
+            // 2. Dynamic registration with Microsoft DI
+            //var serviceProvider = new ServiceCollection().AddMyMediator(ServiceLifetime.Scoped, typeof(Program))
+            //                                             .BuildServiceProvider();
+
+            //var mediator = serviceProvider.GetRequiredService<IMediator>();
+
+            //await mediator.Send(new MyRequest("Hello World!"));
+            //await mediator.Send(new MyAgeRequest(28));
+
+
+
+            // 3.Dynamic registration with My DI
+            var myServiceProvider = new MyServiceCollection().AddMyMediator(MyServiceLifetime.Transient, typeof(Program))
+                                                             .GenerateContainer();
+
+            var mediator = myServiceProvider.GetService<IMediator>();
             await mediator.Send(new MyRequest("Hello World!"));
             await mediator.Send(new MyAgeRequest(28));
         }
