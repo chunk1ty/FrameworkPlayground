@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mediator.Core;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Mediator
 {
@@ -9,31 +9,42 @@ namespace Mediator
     {
         static async Task Main()
         {
-            var requestHandlersMappings = new Dictionary<Type, Type>
-            {
-                {typeof(MyRequest), typeof(MyRequestRequestHandler)},
-                {typeof(MyAgeRequest), typeof(MyAgeRequestRequestHandler)}
-            };
+            // 1. Manual registration
 
-            var notificationHandlersMappings = new Dictionary<Type, List<Type>>
-            {
-                {typeof(MyNotification), new List<Type>(2) {typeof(MyNotificationHandler1), typeof(MyNotificationHandler2) }},
-            };
+            //var requestHandlersMappings = new Dictionary<Type, Type>
+            //{
+            //    {typeof(MyRequest), typeof(MyRequestRequestHandler)},
+            //    {typeof(MyAgeRequest), typeof(MyAgeRequestRequestHandler)}
+            //};
 
-            var registrations = new Dictionary<Type, Func<object>>
-            {
-                {typeof(MyRequestRequestHandler), () => new MyRequestRequestHandler()},
-                {typeof(MyAgeRequestRequestHandler), () => new MyAgeRequestRequestHandler()},
-                {typeof(MyNotificationHandler1), () => new MyNotificationHandler1()},
-                {typeof(MyNotificationHandler2), () => new MyNotificationHandler2()},
-            };
+            //var notificationHandlersMappings = new Dictionary<Type, List<Type>>
+            //{
+            //    {typeof(MyNotification), new List<Type>(2) {typeof(MyNotificationHandler1), typeof(MyNotificationHandler2) }},
+            //};
 
-            IMediator mediator = new MyMediator(requestHandlersMappings, notificationHandlersMappings, registrations);
+            //var registrations = new Dictionary<Type, Func<object>>
+            //{
+            //    {typeof(MyRequestRequestHandler), () => new MyRequestRequestHandler()},
+            //    {typeof(MyAgeRequestRequestHandler), () => new MyAgeRequestRequestHandler()},
+            //    {typeof(MyNotificationHandler1), () => new MyNotificationHandler1()},
+            //    {typeof(MyNotificationHandler2), () => new MyNotificationHandler2()},
+            //};
+
+            //IMediator mediator = new MyMediator(requestHandlersMappings, notificationHandlersMappings, registrations);
 
             //await mediator.Send(new MyRequest("Hello World!"));
             //await mediator.Send(new MyAgeRequest(28));
 
-            await mediator.Publish(new MyNotification("notification"));
+            //await mediator.Publish(new MyNotification("notification"));
+
+            // 2. Dynamic registration
+            var serviceProvider = new ServiceCollection().AddMediator(ServiceLifetime.Scoped, typeof(Program))
+                                                         .BuildServiceProvider();
+
+            var mediator = serviceProvider.GetRequiredService<IMediator>();
+
+            await mediator.Send(new MyRequest("Hello World!"));
+            await mediator.Send(new MyAgeRequest(28));
         }
 
         private static Func<Type, object> DiRegistrations()

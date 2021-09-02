@@ -28,6 +28,14 @@ namespace Mediator.Core
             _notificationHandlersMappings = notificationHandlersMappings;
         }
 
+        private Func<Type, object> _getRequiredService;
+
+        public MyMediator(Func<Type, object> getRequiredService, Dictionary<Type, Type> handlerInfo)
+        {
+            _getRequiredService = getRequiredService;
+            _requestHandlersMappings = handlerInfo;
+        }
+
         public async Task<TResponse> Send<TResponse>(IRequest<TResponse> request)
         {
             if (request is null)
@@ -42,7 +50,7 @@ namespace Mediator.Core
             }
 
             Type requestHandlerType = _requestHandlersMappings[requestType];
-            object handler = _registrations[requestHandlerType]();
+            object handler = _getRequiredService(requestHandlerType);
 
             return await (Task<TResponse>)handler.GetType().GetMethod("Handle").Invoke(handler, new[] { request });
         }
