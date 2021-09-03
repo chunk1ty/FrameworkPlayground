@@ -44,7 +44,7 @@ namespace Mediator
             //var serviceProvider = new ServiceCollection().AddMyMediator(ServiceLifetime.Scoped, typeof(Program))
             //                                             .BuildServiceProvider();
 
-            //var mediator = serviceProvider.GetRequiredService<IMediator>();
+            //var mediator = serviceProvider.GetService<IMediator>();
 
             //await mediator.Send(new MyRequest("Hello World!"));
             //await mediator.Send(new MyAgeRequest(28));

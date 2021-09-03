@@ -39,7 +39,7 @@ namespace DiContainer.Core.MyAdvancedDiContainer
 
             if (myServiceDescriptor.ImplementationFactory != null)
             {
-                // ...
+                return  myServiceDescriptor.ImplementationFactory.Invoke(this);
             }
 
             object implementationInstance = CreateNewInstance(myServiceDescriptor.ImplementationType);
