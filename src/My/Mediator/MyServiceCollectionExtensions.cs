@@ -27,7 +27,6 @@ namespace Mediator
 
                 var serviceDescriptor = handlers.Select(x => new MyServiceDescriptor(x, x, lifetime));
 
-
                 services.AddServiceDescriptor(serviceDescriptor);
             }
 

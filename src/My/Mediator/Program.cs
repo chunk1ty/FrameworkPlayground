@@ -50,10 +50,9 @@ namespace Mediator
             //await mediator.Send(new MyAgeRequest(28));
 
 
-
             // 3.Dynamic registration with My DI
             var myServiceProvider = new MyServiceCollection().AddMyMediator(MyServiceLifetime.Transient, typeof(Program))
-                                                             .GenerateContainer();
+                                                             .BuildContainer();
 
             var mediator = myServiceProvider.GetService<IMediator>();
             await mediator.Send(new MyRequest("Hello World!"));

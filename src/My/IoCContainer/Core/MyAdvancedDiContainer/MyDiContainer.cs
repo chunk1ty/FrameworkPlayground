@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DiContainer.Core.MyAdvancedDiContainer
 {
-    public class MyDiContainer
+    public class MyDiContainer : IServiceProvider
     {
         private readonly Dictionary<Type, MyServiceDescriptor> _serviceDescriptors;
 
@@ -35,6 +35,11 @@ namespace DiContainer.Core.MyAdvancedDiContainer
             if (myServiceDescriptor.Implementation != null)
             {
                 return myServiceDescriptor.Implementation;
+            }
+
+            if (myServiceDescriptor.ImplementationFactory != null)
+            {
+                // ...
             }
 
             object implementationInstance = CreateNewInstance(myServiceDescriptor.ImplementationType);

@@ -18,7 +18,7 @@ namespace DiContainer
             myServiceCollection.RegisterSingleton<IRepository, Repository>();
             myServiceCollection.RegisterTransient<LoginController>();
 
-            var myContainer = myServiceCollection.GenerateContainer();
+            var myContainer = myServiceCollection.BuildContainer();
             var hash1 = myContainer.GetService<IRepository>().GetHashCode();
             var hash2 = myContainer.GetService<IRepository>().GetHashCode();
 

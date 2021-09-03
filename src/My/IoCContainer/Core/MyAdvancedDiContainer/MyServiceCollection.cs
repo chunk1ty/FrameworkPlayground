@@ -39,7 +39,7 @@ namespace DiContainer.Core.MyAdvancedDiContainer
             _serviceDescriptors.Add(typeof(TService), new MyServiceDescriptor(typeof(TService), instance, MyServiceLifetime.Singleton));
         }
 
-        public void RegisterSingleton<TService>(Func<MyDiContainer, TService> implementationFactory)
+        public void RegisterSingleton<TService>(Func<IServiceProvider, object> implementationFactory)
         {
             _serviceDescriptors.Add(typeof(TService), new MyServiceDescriptor(typeof(TService), implementationFactory, MyServiceLifetime.Singleton));
         }
@@ -52,7 +52,7 @@ namespace DiContainer.Core.MyAdvancedDiContainer
             }
         }
 
-        public MyDiContainer GenerateContainer()
+        public MyDiContainer BuildContainer()
         {
             return new MyDiContainer(_serviceDescriptors);
         }
