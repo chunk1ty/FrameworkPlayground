@@ -10,7 +10,9 @@ namespace SamuraiApp.UI
 
         private static void Main(string[] args)
         {
-            SimpleInteractions.Interact();
+            // SimpleInteractions.Interact();
+
+            RelatedInteractions.Interact();
 
             //QuerySamuraiBattleStats();
             //QueryUsingRawSql();

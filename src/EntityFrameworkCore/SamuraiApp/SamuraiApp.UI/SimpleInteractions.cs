@@ -1,22 +1,15 @@
-﻿using Humanizer;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SamuraiApp.Data;
 using SamuraiApp.Domain;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text.RegularExpressions;
-using System.Xml.Linq;
-using static Humanizer.In;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace SamuraiApp.UI
 {
     internal class SimpleInteractions
     {
-        private static SamuraiContext _context = new SamuraiContext();
+        private static SamuraiContext _context = new();
 
         internal static void Interact()
         {

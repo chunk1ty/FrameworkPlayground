@@ -14,14 +14,17 @@ namespace SamuraiApp.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Changing LogLevel to debug will log transaction isolation level
-            //      Began transaction with isolation level 'ReadCommitted'.
-            optionsBuilder.UseSqlServer(
-                    "Server=127.0.0.1,1433;Database=SamuraiAppData;User ID=sa;Password=<YourStrong@Passw0rd>")
+            optionsBuilder
+                .UseSqlServer("Server=127.0.0.1,1433;Database=SamuraiAppData;User ID=sa;Password=<YourStrong@Passw0rd>")
+                // Changing LogLevel to Debug will log transaction isolation level
                 .LogTo(Console.WriteLine,
                        new[] { DbLoggerCategory.Database.Command.Name, DbLoggerCategory.Database.Transaction.Name },
                        LogLevel.Information)
+                // enables LL
+                // .UseLazyLoadingProxies()
+                // shows parameter value 
                 .EnableSensitiveDataLogging();
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
