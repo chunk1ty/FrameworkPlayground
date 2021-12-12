@@ -1,4 +1,6 @@
 ﻿using Benchmark.Battles;
+using Benchmark.Problems;
+using BenchmarkDotNet.Running;
 
 namespace Benchmark
 {
@@ -8,7 +10,12 @@ namespace Benchmark
         {
             // CatsDbContextSeeder.Seed();
 
-            TooManyQueriesBattle.Fight();
+            // NPlus1Problem.Execute();
+
+            BenchmarkRunner.Run(typeof(Program).Assembly);
+
+            //var catsCountQuery = new CatsCountQuery();
+            //catsCountQuery.Execute().GetAwaiter().GetResult();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Benchmark.Entities;
 using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Benchmark.Data
 {
@@ -17,7 +18,8 @@ namespace Benchmark.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder
-                //.LogTo(Console.WriteLine)
+                //.LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
+                //.EnableSensitiveDataLogging()
                 .UseLazyLoadingProxies(_enableLazyLoading)
                 .UseSqlServer(ConnectionString.DefaultConnection);
 
