@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Benchmark.Battles;
 
 namespace Benchmark
 {
@@ -6,7 +6,9 @@ namespace Benchmark
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // CatsDbContextSeeder.Seed();
+
+            TooManyQueriesBattle.Fight();
         }
     }
 }
