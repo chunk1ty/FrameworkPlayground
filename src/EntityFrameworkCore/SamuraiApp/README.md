@@ -1,0 +1,1 @@
+![Samurai app relations diagram](img/diagram.png)

@@ -51,6 +51,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamuraiApp.Data", "src\Enti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamuraiApp.UI", "src\EntityFrameworkCore\SamuraiApp\SamuraiApp.UI\SamuraiApp.UI.csproj", "{0C27D88F-7AA0-402B-AACB-AF8468C24630}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmark", "src\EntityFrameworkCore\Benchmark\Benchmark.csproj", "{3D686313-EC50-4281-BE33-615B8E0A30E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,10 @@ Global
 		{0C27D88F-7AA0-402B-AACB-AF8468C24630}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C27D88F-7AA0-402B-AACB-AF8468C24630}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C27D88F-7AA0-402B-AACB-AF8468C24630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D686313-EC50-4281-BE33-615B8E0A30E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D686313-EC50-4281-BE33-615B8E0A30E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D686313-EC50-4281-BE33-615B8E0A30E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D686313-EC50-4281-BE33-615B8E0A30E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,6 +144,7 @@ Global
 		{F8F1C6F2-48FD-4036-8230-1D9D329A199E} = {A6AA3968-D2B2-44FB-957F-165F87647C6F}
 		{A151F810-2A88-41A1-939F-7736F5B63522} = {A6AA3968-D2B2-44FB-957F-165F87647C6F}
 		{0C27D88F-7AA0-402B-AACB-AF8468C24630} = {A6AA3968-D2B2-44FB-957F-165F87647C6F}
+		{3D686313-EC50-4281-BE33-615B8E0A30E5} = {AF8407A7-4867-430E-8A17-C12A47361BA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04C17BF5-0727-4591-B4AC-31C5F8B0B1B5}
