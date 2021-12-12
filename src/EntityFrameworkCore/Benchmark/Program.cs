@@ -1,4 +1,4 @@
-﻿using Benchmark.Battles;
+﻿using Benchmark.Data;
 using Benchmark.Problems;
 using BenchmarkDotNet.Running;
 
@@ -9,13 +9,16 @@ namespace Benchmark
         static void Main(string[] args)
         {
             // CatsDbContextSeeder.Seed();
+            // CatsDbContextSeeder.DeleteAndSeed();
 
-            // NPlus1Problem.Execute();
-
-            BenchmarkRunner.Run(typeof(Program).Assembly);
+            // BenchmarkRunner.Run(typeof(Program).Assembly);
 
             //var catsCountQuery = new CatsCountQuery();
             //catsCountQuery.Execute().GetAwaiter().GetResult();
+            //var catsDeleteQuery = new CatsDeleteQuery();
+            //catsDeleteQuery.Execute().GetAwaiter().GetResult();
+
+            // NPlus1Problem.Execute();
         }
     }
 }

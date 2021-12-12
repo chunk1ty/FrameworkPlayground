@@ -1,12 +1,12 @@
-﻿using Benchmark.Data;
-using Benchmark.Entities;
-using Microsoft.Data.SqlClient;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Dapper;
-using Microsoft.EntityFrameworkCore;
+using Benchmark.Data;
+using Benchmark.Entities;
 using BenchmarkDotNet.Attributes;
+using Dapper;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 //|                          Method |     Mean |   Error |   StdDev |      Gen 0 |     Gen 1 |     Gen 2 | Allocated |
 //|-------------------------------- |---------:|--------:|---------:|-----------:|----------:|----------:|----------:|
@@ -18,18 +18,18 @@ using BenchmarkDotNet.Attributes;
 //|                    EFCoreRawSql | 278.9 ms | 5.42 ms |  8.59 ms |  4000.0000 | 1000.0000 |         - |     23 MB |
 //|              DapperWithLeftJoin | 272.2 ms | 2.35 ms |  1.96 ms |  2000.0000 |  500.0000 |         - |     13 MB |
 //|             DapperWithInnerJoin | 263.9 ms | 5.25 ms |  9.47 ms |  2000.0000 |  500.0000 |         - |     13 MB |
-namespace Benchmark.Battles
+namespace Benchmark.Queries
 {
     [MemoryDiagnoser]
-    //return count of cats which name contains "1" and cat's owner name contains "1"
-
-    // cats rows - 100000
-    // owners rows - 10000
     public class CatsCountQuery
     {
-
         public async Task Execute()
         {
+            //return count of cats which name contains "1" and cat's owner name contains "1"
+
+            // cats rows - 100000
+            // owners rows - 10000
+
             await EfUsingIncludeWithoutNoTracking();
             await EfUsingInclude();
             await EfUsingFilteredInclude();
@@ -155,7 +155,7 @@ namespace Benchmark.Battles
 
                 Console.WriteLine($"EF Core Join:  {cats.Count} Results");
             }
-            
+
             //SELECT[t].[Id], [t].[Age], [t].[BirthDate], [t].[Color], [t].[Name], [t].[OwnerId]
             //FROM[Owners] AS[o]
             //INNER JOIN(

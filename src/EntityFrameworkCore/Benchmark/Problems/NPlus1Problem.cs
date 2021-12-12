@@ -1,5 +1,4 @@
-﻿using Benchmark.Battles;
-using Benchmark.Data;
+﻿using Benchmark.Data;
 using System;
 using System.Diagnostics;
 using System.Linq;
