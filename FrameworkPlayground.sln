@@ -42,6 +42,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mediator", "src\My\Mediator\Mediator.csproj", "{14B484F2-F3F9-47BA-AEA4-724A44E2ACF6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFrameworkCore", "EntityFrameworkCore", "{AF8407A7-4867-430E-8A17-C12A47361BA7}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SamuraiApp", "SamuraiApp", "{A6AA3968-D2B2-44FB-957F-165F87647C6F}"
 EndProject
@@ -55,7 +58,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Benchmark", "src\EntityFram
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cache", "src\My\Cache\Cache.csproj", "{E510842B-EEBC-45AA-B85A-14970C70F8D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMapper", "src\My\AutoMapper\AutoMapper.csproj", "{649ADA4E-56E9-4C21-98F4-62B6DCED8C0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMapper", "src\My\AutoMapper\AutoMapper.csproj", "{649ADA4E-56E9-4C21-98F4-62B6DCED8C0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamuraiApp.Api", "src\EntityFrameworkCore\SamuraiApp\SamuraiApp.Api\SamuraiApp.Api.csproj", "{5D6C9D01-DF96-41ED-BD78-28E2E570EBCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -131,6 +136,10 @@ Global
 		{649ADA4E-56E9-4C21-98F4-62B6DCED8C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{649ADA4E-56E9-4C21-98F4-62B6DCED8C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{649ADA4E-56E9-4C21-98F4-62B6DCED8C0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D6C9D01-DF96-41ED-BD78-28E2E570EBCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D6C9D01-DF96-41ED-BD78-28E2E570EBCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D6C9D01-DF96-41ED-BD78-28E2E570EBCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D6C9D01-DF96-41ED-BD78-28E2E570EBCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -159,6 +168,7 @@ Global
 		{3D686313-EC50-4281-BE33-615B8E0A30E5} = {AF8407A7-4867-430E-8A17-C12A47361BA7}
 		{E510842B-EEBC-45AA-B85A-14970C70F8D7} = {E3899A2E-C22A-42A6-B1EB-CBFAF32F0455}
 		{649ADA4E-56E9-4C21-98F4-62B6DCED8C0C} = {E3899A2E-C22A-42A6-B1EB-CBFAF32F0455}
+		{5D6C9D01-DF96-41ED-BD78-28E2E570EBCA} = {A6AA3968-D2B2-44FB-957F-165F87647C6F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04C17BF5-0727-4591-B4AC-31C5F8B0B1B5}

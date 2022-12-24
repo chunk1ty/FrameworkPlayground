@@ -15,11 +15,12 @@ namespace SamuraiApp.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseSqlServer("Server=127.0.0.1,1433;Database=SamuraiAppData;User ID=sa;Password=<YourStrong@Passw0rd>")
+                .UseSqlServer("Server=127.0.0.1,1433;Database=SamuraiAppData;User ID=sa;Password=yourStrong(!)Password")
+                //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                 // Changing LogLevel to Debug will log transaction isolation level
-                .LogTo(Console.WriteLine,
-                       new[] { DbLoggerCategory.Database.Command.Name, DbLoggerCategory.Database.Transaction.Name },
-                       LogLevel.Information)
+                //.LogTo(Console.WriteLine,
+                //       new[] { DbLoggerCategory.Database.Command.Name, DbLoggerCategory.Database.Transaction.Name },
+                //       LogLevel.Information)
                 // enables LL
                 // .UseLazyLoadingProxies()
                 // shows parameter value 
